@@ -37,7 +37,7 @@
   }
 }
 
-/* Slide Up (для карток) */
+/* Slide Up (for cards) */
 @keyframes slideUp {
   from {
     opacity: 0;
@@ -49,7 +49,7 @@
   }
 }
 
-/* Slide In (для мобільного меню) */
+/* Slide In (for mobile menu) */
 @keyframes slideIn {
   from {
     transform: translateX(100%);
@@ -59,7 +59,7 @@
   }
 }
 
-/* Slide Down (для dropdown) */
+/* Slide Down (for dropdown) */
 @keyframes slideDown {
   from {
     opacity: 0;
@@ -71,7 +71,7 @@
   }
 }
 
-/* Pulse (для статистики) */
+/* Pulse (for statistics) */
 @keyframes pulse {
   0%, 100% {
     transform: scale(1);
