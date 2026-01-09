@@ -2,6 +2,7 @@
 
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { AuthProvider } from "@/context/AuthContext";
 import Header from "@/components/Header/Header";
 import "./globals.css";
 
@@ -24,8 +25,10 @@ export default function RootLayout({
   return (
     <html lang="uk" className={inter.variable}>
       <body className="min-h-screen flex flex-col bg-[#f3f3f3] font-sans antialiased">
-        <Header />
-        <main className="flex-1">{children}</main>
+        <AuthProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+        </AuthProvider>
       </body>
     </html>
   );

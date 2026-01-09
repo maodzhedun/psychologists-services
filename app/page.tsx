@@ -1,4 +1,7 @@
+// app/page.tsx
+
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -47,10 +50,11 @@ export default function Home() {
           {/* ===== IMAGE ===== */}
           <div className="relative flex justify-center items-center order-1 lg:order-2">
             <div className="relative w-[280px] h-[320px] sm:w-[380px] sm:h-[440px] lg:w-[464px] lg:h-[526px]">
-              <img
-                src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&q=80"
+              <Image
+                src="/images/hero.jpg"
                 alt="Professional psychologist"
-                className="w-full h-full object-cover rounded-xl"
+                fill
+                className="object-cover rounded-xl"
               />
 
               {/* ===== DECORATIVE ELEMENTS ===== */}
