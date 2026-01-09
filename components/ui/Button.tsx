@@ -20,7 +20,7 @@ export default function Button({
 }: ButtonProps) {
   // Basic styles
   const baseStyles =
-    "inline-flex items-center justify-center gap-2 font-medium rounded-xl transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed";
+    "inline-flex items-center justify-center gap-2 font-medium rounded-full transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed";
 
   // Colour options
   const variants = {

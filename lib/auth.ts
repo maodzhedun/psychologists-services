@@ -8,6 +8,7 @@ import {
 } from "firebase/auth";
 import { ref, set } from "firebase/database";
 import { auth, database } from "./firebase";
+import { User } from "@/types";
 
 /**
  * New user registration
@@ -20,8 +21,8 @@ export const registerUser = async ({
   name: string;
   email: string;
   password: string;
-}) => {
-  // Create a user
+}): Promise<User> => {
+  // Creating a user
   const userCredential = await createUserWithEmailAndPassword(
     auth,
     email,
@@ -40,7 +41,11 @@ export const registerUser = async ({
     createdAt: new Date().toISOString(),
   });
 
-  return user;
+  return {
+    uid: user.uid,
+    email: user.email,
+    displayName: name,
+  };
 };
 
 /**
@@ -52,47 +57,59 @@ export const loginUser = async ({
 }: {
   email: string;
   password: string;
-}) => {
+}): Promise<User> => {
   const userCredential = await signInWithEmailAndPassword(
     auth,
     email,
     password
   );
-  return userCredential.user;
+
+  return {
+    uid: userCredential.user.uid,
+    email: userCredential.user.email,
+    displayName: userCredential.user.displayName,
+  };
 };
 
 /**
- * Log out of  account
+ * Log out from account
  */
-export const logoutUser = async () => {
+export const logoutUser = async (): Promise<void> => {
   await signOut(auth);
 };
 
 /**
- * Authorisation status listener
+ * Authorisation state listener
  */
-export const onAuthChange = (callback: (user: FirebaseUser | null) => void) => {
-  return onAuthStateChanged(auth, callback);
+export const onAuthChange = (
+  callback: (user: User | null) => void
+): (() => void) => {
+  return onAuthStateChanged(auth, (firebaseUser: FirebaseUser | null) => {
+    if (firebaseUser) {
+      callback({
+        uid: firebaseUser.uid,
+        email: firebaseUser.email,
+        displayName: firebaseUser.displayName,
+      });
+    } else {
+      callback(null);
+    }
+  });
 };
 
 /**
- * Getting the Firebase error text
+ * Receiving Firebase error text
  */
 export const getFirebaseErrorMessage = (code: string): string => {
-  switch (code) {
-    case "auth/email-already-in-use":
-      return "Цей email вже використовується";
-    case "auth/invalid-email":
-      return "Невірний формат email";
-    case "auth/weak-password":
-      return "Пароль занадто слабкий";
-    case "auth/user-not-found":
-      return "Користувача не знайдено";
-    case "auth/wrong-password":
-      return "Невірний пароль";
-    case "auth/invalid-credential":
-      return "Невірні облікові дані";
-    default:
-      return "Сталася помилка. Спробуйте ще раз";
-  }
+  const errorMessages: Record<string, string> = {
+    "auth/email-already-in-use": "Цей email вже використовується",
+    "auth/invalid-email": "Невірний формат email",
+    "auth/weak-password": "Пароль занадто слабкий (мінімум 6 символів)",
+    "auth/user-not-found": "Користувача не знайдено",
+    "auth/wrong-password": "Невірний пароль",
+    "auth/invalid-credential": "Невірний email або пароль",
+    "auth/too-many-requests": "Забагато спроб. Спробуйте пізніше",
+  };
+
+  return errorMessages[code] || "Сталася помилка. Спробуйте ще раз";
 };

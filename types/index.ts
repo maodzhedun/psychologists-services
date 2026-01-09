@@ -32,7 +32,7 @@ export interface User {
 
 export interface AuthContextType {
   user: User | null;
-  loading: boolean;
+  isLoading: boolean;
   favorites: string[];
   isAuthenticated: boolean;
   updateFavorites: (favorites: string[]) => void;

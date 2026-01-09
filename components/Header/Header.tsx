@@ -9,9 +9,6 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
-  // Check if we are on the main page (to change the colour)
-  const isHomePage = pathname === "/";
-
   // Navigation links
   const navLinks = [
     { href: "/", label: "Home" },
@@ -19,38 +16,15 @@ export default function Header() {
   ];
 
   return (
-    <header
-      className={`sticky top-0 z-40 ${
-        isHomePage ? "bg-[#54be96]" : "bg-white border-b border-[#191a15]/10"
-      }`}
-    >
+    <header className="sticky top-0 z-40 bg-white border-b border-[#191a15]/10">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         {/* ===== LOGO ===== */}
         <Link
           href="/"
-          className="flex items-center gap-1 text-lg sm:text-xl font-semibold"
+          className="flex items-center text-lg sm:text-xl font-semibold"
         >
-          <span
-            className={`flex items-center ${
-              isHomePage ? "text-white" : "text-[#54be96]"
-            }`}
-          >
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-              <circle cx="14" cy="14" r="14" fill="currentColor" />
-              <path
-                d="M8 14C8 10.6863 10.6863 8 14 8C17.3137 8 20 10.6863 20 14"
-                stroke={isHomePage ? "#54be96" : "white"}
-                strokeWidth="2"
-                strokeLinecap="round"
-              />
-            </svg>
-          </span>
-          <span className={isHomePage ? "text-white" : "text-[#191a15]"}>
-            psychologists.
-          </span>
-          <span className={isHomePage ? "text-white" : "text-[#54be96]"}>
-            services
-          </span>
+          <span className="text-[#54be96]">psychologists</span>
+          <span className="text-[#191a15]">.services</span>
         </Link>
 
         {/* ===== DESKTOP NAVIGATION ===== */}
@@ -60,31 +34,21 @@ export default function Header() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`relative py-1 transition-colors ${
-                    isHomePage
-                      ? "text-white hover:opacity-80"
-                      : "text-[#191a15] hover:text-[#54be96]"
-                  } ${
-                    pathname === link.href
-                      ? "after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-current"
-                      : ""
-                  }`}
+                  className={`relative py-2 transition-colors text-[#191a15] hover:text-[#54be96]`}
                 >
                   {link.label}
+                  {/* Active indicator - green dot */}
+                  {pathname === link.href && (
+                    <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#54be96] rounded-full" />
+                  )}
                 </Link>
               </li>
             ))}
           </ul>
 
-          {/* Authorisation buttons (will be  later) */}
+          {/* Кнопки авторизації (будуть функціональні пізніше) */}
           <div className="flex items-center gap-2">
-            <button
-              className={`font-medium px-4 py-2 rounded-lg transition-colors ${
-                isHomePage
-                  ? "text-white hover:opacity-80"
-                  : "text-[#191a15] hover:text-[#54be96]"
-              }`}
-            >
+            <button className="px-6 py-2.5 font-medium text-[#191a15] border border-[#191a15]/20 rounded-full transition-colors hover:border-[#191a15]/40">
               Log In
             </button>
             <Button>Registration</Button>
@@ -98,19 +62,19 @@ export default function Header() {
           aria-label="Toggle menu"
         >
           <span
-            className={`w-full h-0.5 rounded transition-all ${
-              isHomePage ? "bg-white" : "bg-[#191a15]"
-            } ${isMobileMenuOpen ? "rotate-45 translate-y-2" : ""}`}
+            className={`w-full h-0.5 rounded bg-[#191a15] transition-all ${
+              isMobileMenuOpen ? "rotate-45 translate-y-2" : ""
+            }`}
           />
           <span
-            className={`w-full h-0.5 rounded transition-all ${
-              isHomePage ? "bg-white" : "bg-[#191a15]"
-            } ${isMobileMenuOpen ? "opacity-0" : ""}`}
+            className={`w-full h-0.5 rounded bg-[#191a15] transition-all ${
+              isMobileMenuOpen ? "opacity-0" : ""
+            }`}
           />
           <span
-            className={`w-full h-0.5 rounded transition-all ${
-              isHomePage ? "bg-white" : "bg-[#191a15]"
-            } ${isMobileMenuOpen ? "-rotate-45 -translate-y-2" : ""}`}
+            className={`w-full h-0.5 rounded bg-[#191a15] transition-all ${
+              isMobileMenuOpen ? "-rotate-45 -translate-y-2" : ""
+            }`}
           />
         </button>
       </div>
@@ -131,21 +95,24 @@ export default function Header() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className={`block py-2 text-[#191a15] ${
-                      pathname === link.href ? "font-medium text-[#54be96]" : ""
+                    className={`flex items-center gap-2 py-2 text-[#191a15] ${
+                      pathname === link.href ? "font-medium" : ""
                     }`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {link.label}
+                    {pathname === link.href && (
+                      <span className="w-2 h-2 bg-[#54be96] rounded-full" />
+                    )}
                   </Link>
                 </li>
               ))}
             </ul>
 
             <div className="flex flex-col gap-3 mt-auto">
-              <Button variant="secondary" className="w-full">
+              <button className="w-full px-6 py-3 font-medium text-[#191a15] border border-[#191a15]/20 rounded-full">
                 Log In
-              </Button>
+              </button>
               <Button className="w-full">Registration</Button>
             </div>
           </nav>

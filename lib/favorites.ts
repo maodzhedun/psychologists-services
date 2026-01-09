@@ -5,13 +5,18 @@ import { database } from "./firebase";
  * Getting a list of favourites from Firebase
  */
 export const getFavoritesFromDB = async (userId: string): Promise<string[]> => {
-  const snapshot = await get(ref(database, `users/${userId}/favorites`));
+  try {
+    const snapshot = await get(ref(database, `users/${userId}/favorites`));
 
-  if (snapshot.exists()) {
-    return snapshot.val() || [];
+    if (snapshot.exists()) {
+      return snapshot.val() || [];
+    }
+
+    return [];
+  } catch (error) {
+    console.error("Error fetching favorites:", error);
+    return [];
   }
-
-  return [];
 };
 
 /**
@@ -21,7 +26,12 @@ export const saveFavoritesToDB = async (
   userId: string,
   favorites: string[]
 ): Promise<void> => {
-  await set(ref(database, `users/${userId}/favorites`), favorites);
+  try {
+    await set(ref(database, `users/${userId}/favorites`), favorites);
+  } catch (error) {
+    console.error("Error saving favorites:", error);
+    throw error;
+  }
 };
 
 /**

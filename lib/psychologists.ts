@@ -3,40 +3,50 @@ import { database } from "./firebase";
 import { Psychologist, FilterValue } from "@/types";
 
 /**
- * Getting all psychologists from Firebase
+ * Get all psychologists from Firebase
  */
 export const getAllPsychologists = async (): Promise<Psychologist[]> => {
-  const snapshot = await get(ref(database, "psychologists"));
+  try {
+    const snapshot = await get(ref(database, "psychologists"));
 
-  if (snapshot.exists()) {
-    const data = snapshot.val();
-    // Converting an object into an array with id
-    return Object.entries(data).map(([key, value]) => ({
-      id: key,
-      ...(value as Omit<Psychologist, "id">),
-    }));
+    if (snapshot.exists()) {
+      const data = snapshot.val();
+      // Converting an object into an array with id
+      return Object.entries(data).map(([key, value]) => ({
+        id: key,
+        ...(value as Omit<Psychologist, "id">),
+      }));
+    }
+
+    return [];
+  } catch (error) {
+    console.error("Error fetching psychologists:", error);
+    return [];
   }
-
-  return [];
 };
 
 /**
- * Getting a psychologist by ID
+ * Get one psychologist by ID
  */
 export const getPsychologistById = async (
   id: string
 ): Promise<Psychologist | null> => {
-  const snapshot = await get(ref(database, `psychologists/${id}`));
+  try {
+    const snapshot = await get(ref(database, `psychologists/${id}`));
 
-  if (snapshot.exists()) {
-    return { id, ...snapshot.val() };
+    if (snapshot.exists()) {
+      return { id, ...snapshot.val() };
+    }
+
+    return null;
+  } catch (error) {
+    console.error("Error fetching psychologist:", error);
+    return null;
   }
-
-  return null;
 };
 
 /**
- * Sorting psychologists according to various criteria
+ * Sorting psychologists
  */
 export const sortPsychologists = (
   psychologists: Psychologist[],
