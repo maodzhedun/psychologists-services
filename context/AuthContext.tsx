@@ -11,10 +11,10 @@ import { onAuthChange } from "@/lib/auth";
 import { getFavoritesFromDB } from "@/lib/favorites";
 import { AuthContextType, User } from "@/types";
 
-// Створюємо контекст
+// Creating context
 const AuthContext = createContext<AuthContextType | null>(null);
 
-// Хук для використання контексту
+// Hook for using context
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
   if (!context) {
@@ -23,21 +23,20 @@ export const useAuth = (): AuthContextType => {
   return context;
 };
 
-// Provider компонент
+// Provider component
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [favorites, setFavorites] = useState<string[]>([]);
-  const [isLoading, setIsLoading] = useState(true); // ← Змінено на isLoading
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Слухаємо зміни стану авторизації
+  // Listening for changes in authorisation status
   useEffect(() => {
     const unsubscribe = onAuthChange(async (authUser: User | null) => {
-      // ← User, не FirebaseUser
       if (authUser) {
-        // Користувач авторизований
+        // User authorised
         setUser(authUser);
 
-        // Завантажуємо обрані
+        // Download selected
         try {
           const userFavorites = await getFavoritesFromDB(authUser.uid);
           setFavorites(userFavorites || []);
@@ -46,28 +45,28 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           setFavorites([]);
         }
       } else {
-        // Користувач не авторизований
+        // User not authorised
         setUser(null);
         setFavorites([]);
       }
 
-      setIsLoading(false); // ← Змінено
+      setIsLoading(false);
     });
 
-    // Відписуємось при розмонтуванні
+    // Unsubscribe when dismounting
     return () => unsubscribe();
   }, []);
 
-  // Оновлення обраних
+  // Updating favourites
   const updateFavorites = (newFavorites: string[]) => {
     setFavorites(newFavorites);
   };
 
-  // Значення контексту
+  // The meaning of context
   const value: AuthContextType = {
     user,
     favorites,
-    isLoading, // ← Змінено з loading
+    isLoading,
     isAuthenticated: !!user,
     updateFavorites,
   };

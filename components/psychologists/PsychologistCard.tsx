@@ -1,8 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Button from "@/components/ui/Button";
 import { Psychologist } from "@/types";
+import { useAuth } from "@/context/AuthContext";
+import { addToFavorites, removeFromFavorites } from "@/lib/favorites";
 
 interface PsychologistCardProps {
   psychologist: Psychologist;
@@ -14,6 +17,7 @@ export default function PsychologistCard({
   const [isExpanded, setIsExpanded] = useState(false);
 
   const {
+    id,
     name,
     avatar_url,
     experience,
@@ -34,14 +38,41 @@ export default function PsychologistCard({
     { label: "Initial_consultation:", value: initial_consultation },
   ];
 
+  const { user, favorites, updateFavorites, isAuthenticated } = useAuth();
+
+  // Check if psychologist is in favorites
+  const isFavorite = favorites.includes(id);
+
+  // Heart click handler
+  const handleFavoriteClick = async () => {
+    if (!isAuthenticated || !user) {
+      alert("Для додавання в обрані потрібно авторизуватися");
+      return;
+    }
+
+    try {
+      if (isFavorite) {
+        const newFavorites = await removeFromFavorites(user.uid, id);
+        updateFavorites(newFavorites);
+      } else {
+        const newFavorites = await addToFavorites(user.uid, id);
+        updateFavorites(newFavorites);
+      }
+    } catch (error) {
+      console.error("Error updating favorites:", error);
+    }
+  };
+
   return (
     <article className="flex flex-col md:flex-row gap-6 p-6 bg-white rounded-3xl">
       {/* ===== AVATAR ===== */}
       <div className="flex-shrink-0">
         <div className="relative w-[120px] h-[120px] p-3 border-2 border-[#54be96] rounded-xl">
-          <img
+          <Image
             src={avatar_url}
             alt={name}
+            width={96}
+            height={96}
             className="w-full h-full object-cover rounded-lg"
           />
           {/* Online indicator */}
@@ -81,11 +112,18 @@ export default function PsychologistCard({
               </span>
             </div>
 
-            {/* Heart button (will be functional later) */}
+            {/* Heart button */}
             <button
               type="button"
-              className="w-10 h-10 flex items-center justify-center text-[#191a15] transition-all hover:scale-110 hover:text-[#54be96]"
-              aria-label="Add to favorites"
+              className={`w-10 h-10 flex items-center justify-center transition-all hover:scale-110 ${
+                isFavorite
+                  ? "text-[#54be96]"
+                  : "text-[#191a15] hover:text-[#54be96]"
+              }`}
+              onClick={handleFavoriteClick}
+              aria-label={
+                isFavorite ? "Remove from favorites" : "Add to favorites"
+              }
             >
               <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
                 <path
@@ -94,6 +132,7 @@ export default function PsychologistCard({
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
+                  fill={isFavorite ? "currentColor" : "none"}
                 />
               </svg>
             </button>
@@ -167,7 +206,7 @@ export default function PsychologistCard({
               ))}
             </ul>
 
-            {/* Button to make an appointment with a psychologist (will be functional later)*/}
+            {/* Make appointment button */}
             <Button>Make an appointment</Button>
           </div>
         )}
