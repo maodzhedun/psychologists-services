@@ -85,7 +85,7 @@ export default function Filter({ value, onChange }: FilterProps) {
 
         {/* Dropdown menu */}
         {isOpen && (
-          <ul className="absolute top-full left-0 right-0 mt-1 bg-white rounded-xl shadow-lg p-2 z-10">
+          <ul className="absolute top-full left-0 right-0 mt-1 bg-white rounded-xl shadow-lg p-2 z-10 animate-slideDown">
             {filterOptions.map((option) => (
               <li key={option.value}>
                 <button

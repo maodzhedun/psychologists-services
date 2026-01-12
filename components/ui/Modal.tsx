@@ -16,7 +16,7 @@ export default function Modal({
   children,
   title,
 }: ModalProps) {
-  // Закриття по Escape
+  // Closing with Escape
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -26,14 +26,14 @@ export default function Modal({
     [onClose]
   );
 
-  // Закриття по кліку на backdrop
+  // Close by clicking on the backdrop
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       onClose();
     }
   };
 
-  // Додаємо/видаляємо слухачі та блокуємо скрол
+  // Add/remove listeners and block scrolling
   useEffect(() => {
     if (isOpen) {
       document.addEventListener("keydown", handleKeyDown);
@@ -46,17 +46,17 @@ export default function Modal({
     };
   }, [isOpen, handleKeyDown]);
 
-  // Не рендеримо якщо закрито
+  // Do not render if closed
   if (!isOpen) return null;
 
-  // Контент модалки
+  // Modal content
   const modalContent = (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
       onClick={handleBackdropClick}
     >
-      <div className="relative w-full max-w-[566px] max-h-[90vh] overflow-y-auto bg-white rounded-3xl p-8 md:p-16">
-        {/* Кнопка закриття */}
+      <div className="relative w-full max-w-[566px] max-h-[90vh] overflow-y-auto bg-white rounded-3xl p-8 md:p-16 animate-scaleIn">
+        {/* Close button */}
         <button
           type="button"
           className="absolute top-5 right-5 w-8 h-8 flex items-center justify-center text-[#191a15] hover:text-[#54be96] transition-colors"
@@ -74,20 +74,20 @@ export default function Modal({
           </svg>
         </button>
 
-        {/* Заголовок */}
+        {/* Title */}
         {title && (
           <h2 className="text-3xl md:text-[40px] font-medium leading-tight text-[#191a15] mb-5 pr-10">
             {title}
           </h2>
         )}
 
-        {/* Контент */}
+        {/* Content */}
         <div className="w-full">{children}</div>
       </div>
     </div>
   );
 
-  // Рендеримо через портал
+  // Render through the portal
   if (typeof window === "undefined") return null;
 
   return createPortal(modalContent, document.body);

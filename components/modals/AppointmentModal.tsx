@@ -126,6 +126,8 @@ export default function AppointmentModal({
         <Image
           src={psychologist.avatar_url}
           alt={psychologist.name}
+          width={44}
+          height={44}
           className="w-11 h-11 rounded-xl object-cover"
         />
         <div className="flex flex-col gap-0.5">

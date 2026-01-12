@@ -28,7 +28,7 @@ html {
   background: rgba(25, 26, 21, 0.4);
 }
 
-/* ===== ANIMATIONS ===== */
+/* ===== KEYFRAMES ===== */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -54,6 +54,11 @@ html {
   to { opacity: 1; transform: scale(1); }
 }
 
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
 /* ===== ANIMATION CLASSES ===== */
 .animate-fadeIn {
   animation: fadeIn 0.3s ease-out;
@@ -73,4 +78,8 @@ html {
 
 .animate-scaleIn {
   animation: scaleIn 0.2s ease-out;
+}
+
+.animate-pulse-slow {
+  animation: pulse 2s ease-in-out infinite;
 }

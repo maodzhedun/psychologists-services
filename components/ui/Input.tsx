@@ -22,7 +22,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
   ) => {
     const [showPassword, setShowPassword] = useState(false);
 
-    // Визначаємо тип input
+    // Defining the input type
     const inputType = showPasswordToggle
       ? showPassword
         ? "text"

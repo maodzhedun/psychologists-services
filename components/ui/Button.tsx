@@ -22,7 +22,7 @@ export default function Button({
   const baseStyles =
     "inline-flex items-center justify-center gap-2 font-medium rounded-full transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed";
 
-  // Colour options
+  // Color options
   const variants = {
     primary: "bg-[#54be96] text-white hover:bg-[#36a379]",
     secondary:

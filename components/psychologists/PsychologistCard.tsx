@@ -67,7 +67,7 @@ export default function PsychologistCard({
   };
 
   return (
-    <article className="flex flex-col md:flex-row gap-6 p-6 bg-white rounded-3xl">
+    <article className="flex flex-col md:flex-row gap-6 p-6 bg-white rounded-3xl transition-shadow duration-300 hover:shadow-lg">
       {/* ===== AVATAR ===== */}
       <div className="flex-shrink-0">
         <div className="relative w-[120px] h-[120px] p-3 border-2 border-[#54be96] rounded-xl">
@@ -173,7 +173,7 @@ export default function PsychologistCard({
 
         {/* ===== EXPANDED CONTENT ===== */}
         {isExpanded && (
-          <div className="mt-8">
+          <div className="mt-8 animate-fadeIn">
             {/* Reviews */}
             <ul className="flex flex-col gap-6 mb-10">
               {reviews.map((review, index) => (
@@ -216,7 +216,7 @@ export default function PsychologistCard({
           </div>
         )}
       </div>
-      
+
       {/* ===== APPOINTMENT MODAL ===== */}
       <AppointmentModal
         isOpen={isAppointmentOpen}

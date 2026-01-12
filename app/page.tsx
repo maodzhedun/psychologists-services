@@ -105,7 +105,7 @@ export default function Home() {
               </div>
 
               {/* Stats card - bottom */}
-              <div className="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 lg:left-auto lg:-translate-x-0 lg:-left-12 flex items-center gap-4 px-4 lg:px-6 py-4 bg-[#54be96] rounded-xl shadow-lg">
+              <div className="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 lg:left-auto lg:-translate-x-0 lg:-left-12 flex items-center gap-4 px-4 lg:px-6 py-4 bg-[#54be96] rounded-xl shadow-lg animate-pulse-slow">
                 <div className="w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center bg-white/20 rounded-lg">
                   {/* Checkmark icon */}
                   <svg

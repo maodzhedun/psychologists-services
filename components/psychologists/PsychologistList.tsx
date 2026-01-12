@@ -21,8 +21,15 @@ export default function PsychologistList({
 
   return (
     <ul className="flex flex-col gap-8">
-      {psychologists.map((psychologist) => (
-        <li key={psychologist.id}>
+      {psychologists.map((psychologist, index) => (
+        <li
+          key={psychologist.id}
+          className="animate-slideUp opacity-0"
+          style={{
+            animationDelay: `${index * 100}ms`,
+            animationFillMode: "forwards",
+          }}
+        >
           <PsychologistCard psychologist={psychologist} />
         </li>
       ))}
