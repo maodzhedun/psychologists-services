@@ -6,6 +6,7 @@ import Button from "@/components/ui/Button";
 import { Psychologist } from "@/types";
 import { useAuth } from "@/context/AuthContext";
 import { addToFavorites, removeFromFavorites } from "@/lib/favorites";
+import AppointmentModal from "@/components/modals/AppointmentModal";
 
 interface PsychologistCardProps {
   psychologist: Psychologist;
@@ -42,6 +43,8 @@ export default function PsychologistCard({
 
   // Check if psychologist is in favorites
   const isFavorite = favorites.includes(id);
+
+  const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
 
   // Heart click handler
   const handleFavoriteClick = async () => {
@@ -207,10 +210,19 @@ export default function PsychologistCard({
             </ul>
 
             {/* Make appointment button */}
-            <Button>Make an appointment</Button>
+            <Button onClick={() => setIsAppointmentOpen(true)}>
+              Make an appointment
+            </Button>
           </div>
         )}
       </div>
+      
+      {/* ===== APPOINTMENT MODAL ===== */}
+      <AppointmentModal
+        isOpen={isAppointmentOpen}
+        onClose={() => setIsAppointmentOpen(false)}
+        psychologist={psychologist}
+      />
     </article>
   );
 }
