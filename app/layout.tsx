@@ -13,8 +13,29 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Psychologists.Services",
-  description: "Знайдіть свого психолога",
+  title: "Psychologists.Services — Знайдіть свого психолога",
+  description:
+    "Платформа для пошуку професійних психологів. Отримайте підтримку та допомогу від кваліфікованих спеціалістів.",
+  keywords: ["психолог", "психологічна допомога", "консультація", "терапія"],
+  authors: [{ name: "Psychologists.Services" }],
+  openGraph: {
+    title: "Psychologists.Services — Знайдіть свого психолога",
+    description:
+      "Платформа для пошуку професійних психологів. Отримайте підтримку та допомогу від кваліфікованих спеціалістів.",
+    type: "website",
+    locale: "uk_UA",
+    siteName: "Psychologists.Services",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Psychologists.Services — Знайдіть свого психолога",
+    description:
+      "Платформа для пошуку професійних психологів. Отримайте підтримку та допомогу від кваліфікованих спеціалістів.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
