@@ -53,7 +53,7 @@ export default function Header() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`relative py-2 transition-colors text-[#191a15] hover:text-[#54be96] ${
+                  className={`relative pb-3 transition-colors text-[#191a15] hover:text-[#54be96] ${
                     pathname === link.href ? "text-[#191a15]" : ""
                   }`}
                 >
