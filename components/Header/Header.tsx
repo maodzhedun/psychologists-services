@@ -36,7 +36,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-40 bg-white border-b border-[#191a15]/10">
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+      <div className="container mx-auto px-4 py-4 flex items-center">
         {/* ===== LOGO ===== */}
         <Link
           href="/"
@@ -46,8 +46,8 @@ export default function Header() {
           <span className="text-[#191a15]">.services</span>
         </Link>
 
-        {/* ===== DESKTOP NAVIGATION ===== */}
-        <nav className="hidden md:flex items-center gap-10">
+        {/* ===== DESKTOP NAVIGATION (centered) ===== */}
+        <nav className="hidden md:flex items-center justify-center flex-1">
           <ul className="flex items-center gap-10">
             {navLinks.map((link) => (
               <li key={link.href}>
@@ -60,67 +60,64 @@ export default function Header() {
                   {link.label}
                   {/* Active indicator - green dot */}
                   {pathname === link.href && (
-                    <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#54be96] rounded-full" />
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#54be96] rounded-full" />
                   )}
                 </Link>
               </li>
             ))}
           </ul>
-
-          {/* Auth Buttons */}
-          <div className="flex items-center gap-2">
-            {isAuthenticated ? (
-              // Authorised user
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2">
-                  {/* User avatar icon */}
-                  <span className="w-10 h-10 flex items-center justify-center bg-[#54be96] text-white rounded-xl">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                      <path
-                        d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                  {/* User name */}
-                  <span className="font-medium text-[#191a15]">
-                    {user?.displayName || "User"}
-                  </span>
-                </div>
-                {/* Log out button */}
-                <button
-                  onClick={handleLogout}
-                  className="px-6 py-2.5 font-medium text-[#191a15] border border-[#191a15]/20 rounded-full transition-colors hover:border-[#191a15]/40"
-                >
-                  Log out
-                </button>
-              </div>
-            ) : (
-              // Unauthorised user
-              <>
-                <button
-                  onClick={() => setAuthModalType("login")}
-                  className="px-6 py-2.5 font-medium text-[#191a15] border border-[#191a15]/20 rounded-full transition-colors hover:border-[#191a15]/40"
-                >
-                  Log In
-                </button>
-                <Button onClick={() => setAuthModalType("register")}>
-                  Registration
-                </Button>
-              </>
-            )}
-          </div>
         </nav>
+
+        {/* ===== AUTH BUTTONS (right) ===== */}
+        <div className="hidden md:flex items-center gap-2">
+          {isAuthenticated ? (
+            // Authorised user
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
+                <span className="w-10 h-10 flex items-center justify-center bg-[#54be96] text-white rounded-xl">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+                <span className="font-medium text-[#191a15]">
+                  {user?.displayName || "User"}
+                </span>
+              </div>
+              <button
+                onClick={handleLogout}
+                className="px-6 py-2.5 font-medium text-[#191a15] border border-[#191a15]/20 rounded-full transition-colors hover:border-[#191a15]/40"
+              >
+                Log out
+              </button>
+            </div>
+          ) : (
+            // Unauthorised user
+            <>
+              <button
+                onClick={() => setAuthModalType("login")}
+                className="px-6 py-2.5 font-medium text-[#191a15] border border-[#191a15]/20 rounded-full transition-colors hover:border-[#191a15]/40"
+              >
+                Log In
+              </button>
+              <Button onClick={() => setAuthModalType("register")}>
+                Registration
+              </Button>
+            </>
+          )}
+        </div>
 
         {/* ===== MOBILE MENU BUTTON ===== */}
         <button
@@ -157,24 +154,6 @@ export default function Header() {
 
           {/* Menu */}
           <nav className="fixed top-0 right-0 w-[300px] h-full bg-white z-50 p-6 pt-24 flex flex-col gap-6 md:hidden animate-slideIn">
-            {/* Close button */}
-            <button
-              className="absolute top-6 right-6 w-8 h-8 flex items-center justify-center"
-              onClick={() => setIsMobileMenuOpen(false)}
-              aria-label="Close menu"
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M18 6L6 18M6 6L18 18"
-                  stroke="#191a15"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-
-            {/* Navigation links */}
             <ul className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 <li key={link.href}>
@@ -194,7 +173,6 @@ export default function Header() {
               ))}
             </ul>
 
-            {/* Auth buttons */}
             <div className="flex flex-col gap-3 mt-auto">
               {isAuthenticated ? (
                 <>

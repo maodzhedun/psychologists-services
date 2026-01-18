@@ -37,7 +37,7 @@ export default function Modal({
   useEffect(() => {
     if (isOpen) {
       document.addEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = "unset";
     }
 
     return () => {
@@ -52,10 +52,10 @@ export default function Modal({
   // Modal content
   const modalContent = (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 animate-fadeIn"
       onClick={handleBackdropClick}
     >
-      <div className="relative w-full max-w-[566px] max-h-[90vh] overflow-y-auto bg-white rounded-3xl p-8 md:p-16 animate-scaleIn">
+      <div className="relative w-full max-w-[600px] max-h-[90vh] overflow-y-auto bg-white rounded-3xl p-10 md:p-16 animate-scaleIn">
         {/* Close button */}
         <button
           type="button"

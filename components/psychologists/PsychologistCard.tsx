@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
-import Button from "@/components/ui/Button";
-import { Psychologist } from "@/types";
 import { useAuth } from "@/context/AuthContext";
+import Image from "next/image";
 import { addToFavorites, removeFromFavorites } from "@/lib/favorites";
 import AppointmentModal from "@/components/modals/AppointmentModal";
+import Button from "@/components/ui/Button";
+import Toast from "@/components/ui/Toast";
+import { Psychologist } from "@/types";
 
 interface PsychologistCardProps {
   psychologist: Psychologist;
@@ -15,7 +16,13 @@ interface PsychologistCardProps {
 export default function PsychologistCard({
   psychologist,
 }: PsychologistCardProps) {
+  const { user, favorites, updateFavorites, isAuthenticated } = useAuth();
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
+  const [toast, setToast] = useState<{
+    message: string;
+    type: "success" | "error" | "info";
+  } | null>(null);
 
   const {
     id,
@@ -31,33 +38,24 @@ export default function PsychologistCard({
     about,
   } = psychologist;
 
-  // Info chips data
-  const infoChips = [
-    { label: "Experience:", value: experience },
-    { label: "License:", value: license },
-    { label: "Specialization:", value: specialization },
-    { label: "Initial_consultation:", value: initial_consultation },
-  ];
-
-  const { user, favorites, updateFavorites, isAuthenticated } = useAuth();
-
-  // Check if psychologist is in favorites
+  // Перевіряємо чи психолог в обраних
   const isFavorite = favorites.includes(id);
 
-  const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
-
-  // Heart click handler
+  // Обробник кліку на серце
   const handleFavoriteClick = async () => {
+    // Якщо не авторизований — показуємо повідомлення
     if (!isAuthenticated || !user) {
-      alert("Для додавання в обрані потрібно авторизуватися");
+      setToast({ message: "Please log in to add to favorites", type: "info" });
       return;
     }
 
     try {
       if (isFavorite) {
+        // Видаляємо з обраних
         const newFavorites = await removeFromFavorites(user.uid, id);
         updateFavorites(newFavorites);
       } else {
+        // Додаємо до обраних
         const newFavorites = await addToFavorites(user.uid, id);
         updateFavorites(newFavorites);
       }
@@ -66,19 +64,25 @@ export default function PsychologistCard({
     }
   };
 
+  // Info chips data
+  const infoChips = [
+    { label: "Experience:", value: experience },
+    { label: "License:", value: license },
+    { label: "Specialization:", value: specialization },
+    { label: "Initial_consultation:", value: initial_consultation },
+  ];
+
   return (
     <article className="flex flex-col md:flex-row gap-6 p-6 bg-white rounded-3xl transition-shadow duration-300 hover:shadow-lg">
       {/* ===== AVATAR ===== */}
       <div className="flex-shrink-0">
         <div className="relative w-[120px] h-[120px] p-3 border-2 border-[#54be96] rounded-xl">
-          <Image
+          <img
             src={avatar_url}
             alt={name}
-            width={96}
-            height={96}
             className="w-full h-full object-cover rounded-lg"
           />
-          {/* Online indicator */}
+          {/* Індикатор онлайн */}
           <span className="absolute top-2 right-2 w-3.5 h-3.5 bg-[#38cd3e] border-[3px] border-white rounded-full" />
         </div>
       </div>
@@ -95,7 +99,7 @@ export default function PsychologistCard({
           </div>
 
           <div className="flex items-center gap-4 md:gap-6 flex-wrap">
-            {/* Statistics */}
+            {/* Статистика */}
             <div className="flex items-center gap-4 flex-wrap">
               <span className="flex items-center gap-2 text-base text-[#191a15]">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -115,7 +119,7 @@ export default function PsychologistCard({
               </span>
             </div>
 
-            {/* Heart button */}
+            {/* Кнопка серця */}
             <button
               type="button"
               className={`w-10 h-10 flex items-center justify-center transition-all hover:scale-110 ${
@@ -142,7 +146,7 @@ export default function PsychologistCard({
           </div>
         </div>
 
-        {/* ===== INFO CHIPS ===== */}
+        {/* Info Chips */}
         <div className="flex flex-wrap gap-2 mb-6">
           {infoChips.map((chip, index) => (
             <span
@@ -209,7 +213,7 @@ export default function PsychologistCard({
               ))}
             </ul>
 
-            {/* Make appointment button */}
+            {/* Кнопка запису */}
             <Button onClick={() => setIsAppointmentOpen(true)}>
               Make an appointment
             </Button>
@@ -223,6 +227,16 @@ export default function PsychologistCard({
         onClose={() => setIsAppointmentOpen(false)}
         psychologist={psychologist}
       />
+
+      {/* ===== TOAST ===== */}
+      {toast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          isOpen={!!toast}
+          onClose={() => setToast(null)}
+        />
+      )}
     </article>
   );
 }
