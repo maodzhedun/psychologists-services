@@ -1,5 +1,6 @@
 //app/page.tsx
 
+import Icon from "@/components/ui/Icon";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -27,22 +28,7 @@ export default function Home() {
               className="inline-flex items-center gap-3 px-12 py-4 text-lg font-medium bg-[#54be96] text-white rounded-full transition-all hover:bg-[#36a379] hover:-translate-y-0.5 hover:shadow-lg"
             >
               Get started
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                <path
-                  d="M5.25 12.75L12.75 5.25"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M5.25 5.25H12.75V12.75"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <Icon name="arrow" size={18} />
             </Link>
           </div>
 
@@ -56,44 +42,11 @@ export default function Home() {
                 className="w-full h-full object-cover rounded-xl"
               />
 
-              {/* User icon - top right (yellow) */}
-              <div className="absolute z-10 -top-3 -right-3 sm:-top-4 sm:-right-4 lg:top-12 lg:-right-10 w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-[#ffc531] rounded-xl lg:rounded-2xl flex items-center justify-center shadow-lg rotate-[15deg]">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  className="text-white sm:w-6 sm:h-6"
-                >
-                  <path
-                    d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              {/* ===== DECORATIVE ELEMENTS ===== */}
+
+              {/* User icon - top right (yellow) - from Figma */}
+              <div className="absolute z-10 -top-3 -right-3 sm:-top-5 sm:-right-5 lg:top-12 lg:-right-10 w-10 h-10 sm:w-12 sm:h-12 lg:w-[54px] lg:h-[54px] bg-[#FBC75E] rounded-xl lg:rounded-2xl flex items-center justify-center shadow-lg rotate-[15deg]">
+                <Icon name="users" size={20} className="lg:w-6 lg:h-6" />
               </div>
 
               {/* Question mark - left side (blue) */}
@@ -106,21 +59,11 @@ export default function Home() {
               {/* Stats card - bottom */}
               <div className="absolute z-10 bottom-6 sm:bottom-10 lg:bottom-20 left-1/2 -translate-x-1/2  lg:-translate-x-0 lg:-left-26 flex items-center gap-4 px-4 lg:px-8 py-4 lg:py-5 bg-[#54be96] rounded-2xl shadow-lg">
                 <div className="w-10 h-10 lg:w-14 lg:h-14 flex items-center justify-center bg-white rounded-xl lg:rounded-2xl">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
+                  <Icon
+                    name="check"
+                    size={20}
                     className="text-[#54be96] lg:w-6 lg:h-6"
-                  >
-                    <path
-                      d="M20 6L9 17L4 12"
-                      stroke="currentColor"
-                      strokeWidth="3"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+                  />
                 </div>
                 <div className="flex flex-col gap-0.5">
                   <span className="text-xs sm:text-sm text-white/80">

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Icon from "./Icon";
 
 interface ToastProps {
   message: string;
@@ -39,40 +40,10 @@ export default function Toast({
   };
 
   const icons = {
-    success: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path
-          d="M20 6L9 17L4 12"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    ),
-    error: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path
-          d="M18 6L6 18M6 6L18 18"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    ),
-    info: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
-        <path
-          d="M12 16V12M12 8H12.01"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
-      </svg>
-    ),
-  };
+    success: "check",
+    error: "close-sm",
+    info: "info",
+  } as const;
 
   return (
     <div className="fixed top-4 right-4 z-[100] animate-slideIn">
@@ -84,7 +55,7 @@ export default function Toast({
           transition-opacity duration-300
         `}
       >
-        {icons[type]}
+        <Icon name={icons[type]} size={20} />
         <span className="text-sm font-medium">{message}</span>
         <button
           onClick={() => {
@@ -93,14 +64,7 @@ export default function Toast({
           }}
           className="ml-2 hover:opacity-80 transition-opacity"
         >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-            <path
-              d="M18 6L6 18M6 6L18 18"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-          </svg>
+          <Icon name="close-sm" size={16} />
         </button>
       </div>
     </div>

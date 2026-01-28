@@ -18,6 +18,11 @@ export const metadata: Metadata = {
     "Платформа для пошуку професійних психологів. Отримайте підтримку та допомогу від кваліфікованих спеціалістів.",
   keywords: ["психолог", "психологічна допомога", "консультація", "терапія"],
   authors: [{ name: "Psychologists.Services" }],
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
   openGraph: {
     title: "Psychologists.Services — Знайдіть свого психолога",
     description:

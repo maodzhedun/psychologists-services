@@ -10,6 +10,7 @@ import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 import Toast from "../ui/Toast";
 import { Psychologist, AppointmentFormData } from "@/types";
+import Icon from "../ui/Icon";
 
 interface AppointmentModalProps {
   isOpen: boolean;
@@ -198,22 +199,7 @@ export default function AppointmentModal({
                   onClick={() => setIsTimeDropdownOpen(!isTimeDropdownOpen)}
                 >
                   <span>{selectedTime || "00:00"}</span>
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path
-                      d="M10 5V10L13.3333 11.6667"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <circle
-                      cx="10"
-                      cy="10"
-                      r="7.5"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                    />
-                  </svg>
+                  <Icon name="clock" size={20} />
                 </button>
 
                 {/* Dropdown Menu */}

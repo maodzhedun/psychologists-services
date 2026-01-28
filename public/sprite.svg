@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <!-- Arrow (Get started button) - from Figma -->
+  <symbol id="icon-arrow" viewBox="0 0 14 16">
+    <path d="M12.6216 0.860936C12.5447 0.314027 12.0391 -0.0670213 11.4921 0.00984164L2.57973 1.2624C2.03282 1.33926 1.65177 1.84493 1.72864 2.39184C1.8055 2.93875 2.31117 3.3198 2.85808 3.24294L10.7802 2.12955L11.8936 10.0517C11.9705 10.5986 12.4761 10.9797 13.023 10.9028C13.57 10.8259 13.951 10.3203 13.8741 9.77335L12.6216 0.860936ZM1.59728 15.9774L12.43 1.60193L10.8327 0.398295L9.59635e-06 14.7737L1.59728 15.9774Z" fill="#FBFBFB"/>
+  </symbol>
+
+  <!-- Users (yellow icon - from Figma export) -->
+  <symbol id="icon-users" viewBox="0 0 25 25">
+    <path d="M14.2705 16.994L13.8427 18.5907L2.66622 15.5959L3.09404 13.9993C3.09404 13.9993 3.94968 10.806 9.53793 12.3034C15.1262 13.8007 14.2705 16.994 14.2705 16.994ZM13.5086 8.66129C13.6566 8.10866 13.6375 7.52454 13.4536 6.98278C13.2697 6.44102 12.9293 5.96596 12.4754 5.61768C12.0215 5.26939 11.4745 5.06352 10.9036 5.0261C10.3327 4.98869 9.76356 5.1214 9.26809 5.40746C8.77262 5.69352 8.3731 6.12008 8.12006 6.6332C7.86702 7.14632 7.77181 7.72295 7.84649 8.29018C7.92117 8.8574 8.16237 9.38975 8.53959 9.81989C8.91682 10.25 9.41313 10.5587 9.96575 10.7067C10.7068 10.9053 11.4964 10.8013 12.1608 10.4178C12.8252 10.0342 13.31 9.40234 13.5086 8.66129ZM15.0783 13.7879C15.4673 14.2992 15.7395 14.8895 15.8758 15.5174C16.0121 16.1452 16.0092 16.7953 15.8672 17.4219L15.4394 19.0185L18.6327 19.8741L19.0605 18.2775C19.0605 18.2775 19.837 15.3796 15.0783 13.7879ZM16.2531 6.40194C15.7044 6.25164 15.1229 6.27193 14.5861 6.4601C14.8895 7.2676 14.9325 8.1498 14.7093 8.98302C14.486 9.81624 14.0076 10.5587 13.3411 11.1063C13.712 11.5377 14.2054 11.846 14.7557 11.9902C15.4967 12.1888 16.2863 12.0848 16.9507 11.7012C17.6151 11.3176 18.0999 10.6858 18.2985 9.94475C18.4971 9.2037 18.3931 8.41412 18.0095 7.74972C17.6259 7.08531 16.9941 6.6005 16.2531 6.40194Z" fill="#FBFBFB"/>
+  </symbol>
+
+  <!-- User (single) - filled -->
+  <symbol id="icon-user" viewBox="0 0 24 24">
+    <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" fill="currentColor"/>
+    <circle cx="12" cy="7" r="4" fill="currentColor"/>
+  </symbol>
+
+  <!-- Check / Checkmark - from Figma (filled) -->
+  <symbol id="icon-check" viewBox="0 0 20 15">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 5L0 7.5L7.5 15L20 2.5L17.5 0L7.5 10L2.5 5Z" fill="#54BE96"/>
+  </symbol>
+
+  <!-- Close / X -->
+  <symbol id="icon-close" viewBox="0 0 32 32">
+    <path d="M24 8L8 24M8 8L24 24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+
+  <!-- Close small -->
+  <symbol id="icon-close-sm" viewBox="0 0 24 24">
+    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+
+  <!-- Star -->
+  <symbol id="icon-star" viewBox="0 0 16 16">
+    <path d="M8 1L10.163 5.37912L15 6.07912L11.5 9.48838L12.326 14.3L8 12.0191L3.674 14.3L4.5 9.48838L1 6.07912L5.837 5.37912L8 1Z" fill="#FFC531"/>
+  </symbol>
+
+  <!-- Heart (outline) -->
+  <symbol id="icon-heart" viewBox="0 0 26 26">
+    <path d="M22.75 9.10833C22.75 10.5942 22.1604 12.0192 21.1133 13.0692L13 21.1667L4.88667 13.0692C3.83958 12.0192 3.25 10.5942 3.25 9.10833C3.25 7.6225 3.83958 6.1975 4.88667 5.14749C5.93375 4.09749 7.35517 3.50665 8.8375 3.50665C10.3198 3.50665 11.7412 4.09749 12.7883 5.14749L13 5.35916L13.2117 5.14749C14.2588 4.09749 15.6802 3.50665 17.1625 3.50665C18.6448 3.50665 20.0663 4.09749 21.1133 5.14749C22.1604 6.1975 22.75 7.6225 22.75 9.10833Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+
+  <!-- Heart (filled) - green when active -->
+  <symbol id="icon-heart-filled" viewBox="0 0 26 26">
+    <path d="M22.75 9.10833C22.75 10.5942 22.1604 12.0192 21.1133 13.0692L13 21.1667L4.88667 13.0692C3.83958 12.0192 3.25 10.5942 3.25 9.10833C3.25 7.6225 3.83958 6.1975 4.88667 5.14749C5.93375 4.09749 7.35517 3.50665 8.8375 3.50665C10.3198 3.50665 11.7412 4.09749 12.7883 5.14749L13 5.35916L13.2117 5.14749C14.2588 4.09749 15.6802 3.50665 17.1625 3.50665C18.6448 3.50665 20.0663 4.09749 21.1133 5.14749C22.1604 6.1975 22.75 7.6225 22.75 9.10833Z" fill="#54be96" stroke="#54be96" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+
+<symbol id="icon-clock" viewBox="0 0 20 20">
+  <path 
+    d="M9.99984 18.3333C14.6022 18.3333 18.3332 14.6024 18.3332 10C18.3332 5.39763 14.6022 1.66667 9.99984 1.66667C5.39746 1.66667 1.6665 5.39763 1.6665 10C1.6665 14.6024 5.39746 18.3333 9.99984 18.3333Z" 
+    stroke="#191A15" 
+    stroke-width="1.5" 
+    stroke-linecap="round" 
+    stroke-linejoin="round" 
+    fill="#f3f3f3" 
+  />
+  <path 
+    d="M10 5V10L13.3333 11.6667" 
+    stroke="#191A15" 
+    stroke-width="1.5" 
+    stroke-linecap="round" 
+    stroke-linejoin="round" 
+    fill="none" 
+  />
+</symbol>
+
+  <!-- Chevron down -->
+  <symbol id="icon-chevron-down" viewBox="0 0 20 20">
+    <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+
+  <!-- Info -->
+  <symbol id="icon-info" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+    <path d="M12 16V12M12 8H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- Loader -->
+  <symbol id="icon-loader" viewBox="0 0 24 24">
+    <path d="M12 2V6M12 18V22M4.93 4.93L7.76 7.76M16.24 16.24L19.07 19.07M2 12H6M18 12H22M4.93 19.07L7.76 16.24M16.24 7.76L19.07 4.93" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+
+  <!-- Menu (hamburger) -->
+  <symbol id="icon-menu" viewBox="0 0 24 24">
+    <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+
+  <!-- Question mark -->
+  <symbol id="icon-question" viewBox="0 0 24 24">
+    <text x="50%" y="75%" text-anchor="middle" fill="currentColor" font-size="20" font-weight="bold">?</text>
+  </symbol>
+</svg>

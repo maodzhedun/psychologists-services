@@ -2,6 +2,7 @@
 
 import { useEffect, useCallback, ReactNode } from "react";
 import { createPortal } from "react-dom";
+import Icon from "./Icon";
 
 interface ModalProps {
   isOpen: boolean;
@@ -63,15 +64,7 @@ export default function Modal({
           onClick={onClose}
           aria-label="Close modal"
         >
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <path
-              d="M24 8L8 24M8 8L24 24"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <Icon name="close" size={32} />
         </button>
 
         {/* Title */}
